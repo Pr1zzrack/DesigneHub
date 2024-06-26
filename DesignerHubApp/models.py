@@ -85,7 +85,7 @@ class View(models.Model):
 class UserProfile(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     user_descriptions = models.TextField()
-    like_designs = models.ManyToManyField(DesignerWork, through='Like', related_name='liked_by')
+    # like_designs = models.ManyToManyField(DesignerWork, through='Like', related_name='liked_by')
 
 class UserSocialNetworkLink(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
