@@ -17,3 +17,4 @@ class UserProfileAdmin(admin.ModelAdmin):
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(DesignerWork)
 admin.site.register(Category)
+admin.site.register(CustomUser)
