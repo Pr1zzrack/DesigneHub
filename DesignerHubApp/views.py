@@ -278,6 +278,10 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+    
+    def get_object(self):
+        user_id = self.kwargs.get('id')
+        return UserProfile.objects.get(user_id=user_id)
 
     @swagger_auto_schema(
         responses={200: UserProfileSerializer(many=True)},
