@@ -623,27 +623,20 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny]
 
-class ReviewCreateView(generics.CreateAPIView):
+class ReviewViewSet(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = [JWTAuthentication]
-
-    def perform_create(self, serializer):
-        user = self.request.user
-        design_id = self.kwargs.get('design_id')
-        serializer.save(user=user, design_id=design_id)
-
-class ReviewListView(generics.ListAPIView):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
-
-class ReviewListForDesignView(generics.ListAPIView):
-    serializer_class = ReviewSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    lookup_field = 'id'
 
     def get_queryset(self):
         design_id = self.kwargs.get('design_id')
         try:
-            DesignerWork.objects.get(pk=design_id)
+            DesignerWork.objects.get(id=design_id)
             return Review.objects.filter(design_id=design_id)
         except DesignerWork.DoesNotExist:
-            raise NotFound("Design not found")
+            raise NotFound("Дизайн не найден")
+
+    def perform_create(self, serializer):
+        design_id = self.kwargs.get('design_id')
+        user = self.request.user
+        serializer.save(user=user, design_id=design_id)

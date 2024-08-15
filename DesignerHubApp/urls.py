@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from .views import *
 
@@ -35,9 +34,8 @@ urlpatterns = [
     path('like/add_design/', LikeViewSet.as_view({'post': 'add_design'}), name='add-like'),
     path('like/remove_design/', LikeViewSet.as_view({'post': 'remove_design'}), name='remove-like'),
 # Review
-    path('reviews/', ReviewListView.as_view(), name='review-list'),
-    path('designs/<int:design_id>/reviews/', ReviewListForDesignView.as_view(), name='review-list-for-design'),
-    path('designs/<int:design_id>/reviews/', ReviewCreateView.as_view(), name='review-create'),
+    path('designs/<int:design_id>/reviews/', ReviewViewSet.as_view({'get': 'list', 'post': 'create'}), name='review-list'),
+    path('designs/<int:design_id>/reviews/<int:id>/', ReviewViewSet.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'}), name='review-detail'),
 # Chat
     path('chat/', ChatViewSet.as_view({'get': 'list', 'post': 'create'}), name='chat'),
     path('chat/<int:id>/', ChatViewSet.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update', 'delete': 'destroy'}), name='chat'),

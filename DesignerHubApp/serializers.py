@@ -195,4 +195,3 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = ['user_first_name', 'design', 'content', 'created_at']
         read_only_fields = ['user_first_name', 'design', 'created_at']
-

@@ -1,14 +1,14 @@
 import requests
 
 # URL вашего API
-url = 'http://127.0.0.1:8000/designs/13/reviews/'  # Замените 1 на ID вашего design
+url = 'http://127.0.0.1:8000/designs/13/reviews/1'  # Замените 1 на ID вашего design
 
 # Токен JWT, который нужно передать в заголовке
-jwt_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNjQ2NjIyLCJpYXQiOjE3MjM2NDYzMjIsImp0aSI6IjM2MjVlNzczYzYwZDQ5NDdhMjg4N2MwOTZhNzVmMzhkIiwidXNlcl9pZCI6MTl9.NmSiapXn5MMHJ8o5uAkzh1sBuJVoPScmC7jUoozf83E'
+jwt_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzNzA0MTgwLCJpYXQiOjE3MjM3MDM4ODAsImp0aSI6IjM2Y2M1NWY1YmU0NTQ3ZjM4YjMzMmM3MGZhMjc3ODMwIiwidXNlcl9pZCI6MTl9.MFj2nHnTLrKwmEO0kCDtEPBeew8NkG8THnrRwMzB9uI'
 
 # Данные для создания комментария
 data = {
-    'content': 'Test 1'  # Текст отзыва
+    'content': 'This is a sample review content.'  # Текст отзыва
 }
 
 # Заголовки запроса
